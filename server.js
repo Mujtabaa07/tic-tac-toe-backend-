@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const express = require('express');
 const bodyParser = require('body-parser');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const cors = require('cors');
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
@@ -13,8 +12,13 @@ dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use();
-app.use(express.json())
+app.use(cors({  origin:'https://tic-tac-toe-full-stack.vercel.app/',
+  methods:['GET','POST'],
+  allowedHeaders:['Content-Type','Authorization']
+}
+
+));
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -301,6 +305,6 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-server.listen(PORT,'0.0.0.0', () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
