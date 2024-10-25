@@ -11,6 +11,7 @@ const http = require('http');
 dotenv.config();
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(cors({  origin:'https://tic-tac-toe-full-stack.vercel.app/',
   methods:['GET','POST'],
